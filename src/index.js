@@ -12,8 +12,12 @@ app.use(bodyParser.json());
 app.use(router);
 
 router.get('/message', (req, res) => {
-  console.log(req.body);
-  console.log(req.query);
+  // console.log(req.body);
+  // console.log(req.query);
+  console.log(req.headers);
+  res.header({
+    "custom-header": "Value",
+  });
   res.send(`Messages ${req.body.name} lists`);
 });
 
