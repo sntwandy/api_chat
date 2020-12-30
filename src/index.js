@@ -22,7 +22,10 @@ router.get('/message', (req, res) => {
 });
 
 router.post('/message', (req, res) => {
-  res.send('Message added!');
+  res.status(201).send({
+    'error': '',
+    'body': 'created correctly'
+  });
 });
 
 // app.use('/', (request, response) => {
