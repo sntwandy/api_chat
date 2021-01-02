@@ -19,17 +19,17 @@ app.use('/', express.static(path.join(__dirname, 'public')));
 
 router.get('/message', (req, res) => {
   if (req.query.error === 'OK') {
-    response.error(req, res, 'There are an error');
+    response.error(req, res, 'Unexpected error', 500, 'Server error');
   } else {
-    response.sucess(req, res, 'Messages lists');
+    response.sucess(req, res, 200, 'Messages lists');
   }
 });
 
 router.post('/message', (req, res) => {
   if (req.query.error === 'OK') {
-    response.error(req, res, 'There are an error', 401);
+    response.error(req, res, 401, 'User unauthorized, doesnt have privilegies to access.');
   } else {
-    response.sucess(req, res, 'Created correctly!', 201);
+    response.sucess(req, res, 201);
   }
 });
 
