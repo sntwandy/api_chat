@@ -1,18 +1,22 @@
-'use strict';
-
+import { Request, Response } from 'express';
 const responseMessages = require('./responseMessages');
 
-exports.sucess = function(req, res, status) {
+const sucess = function(req: Request, res: Response, status: number): void {
   res.status(status).send({
     'error': '',
     'body': responseMessages(status),
   });
 };
 
-exports.error = function(req, res, status, details) {
+const error = function(req: Request, res: Response, status: number, details: string): void {
   console.error('[response error] => ' + details);
   res.status(status).send({
     'error': responseMessages(status),
     'body': '',
   });
+};
+
+export = {
+  sucess,
+  error
 };

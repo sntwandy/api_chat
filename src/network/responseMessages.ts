@@ -1,6 +1,4 @@
-'use estrict';
-
-const responseMessages = (errorCode) => {
+const responseMessages = (errorCode: number): string => {
   switch(errorCode) {
     case 200:
       return 'Everything OKAY.';
