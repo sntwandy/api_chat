@@ -9,7 +9,7 @@ interface Message {
   date: Date,
 };
 
-const addMessage = (user: any, message: string): Promise<Message> => {
+const addMessage = (user: string, message: string): Promise<Message> => {
   return new Promise((resolve, reject)=> {
     if (!user || !message) {
       reject('Incorrect data');
