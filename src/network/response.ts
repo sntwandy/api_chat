@@ -13,6 +13,13 @@ const sucess = (req: Request, res: Response, status: number, message: string): v
   });
 };
 
+const sucessMessageList = (req: Request, res: Response, status: number, messageList: FullMessage[]): void => {
+  res.status(status).send({
+    'error': '',
+    'body': messageList,
+  });
+};
+
 const sucessMessage = (req: Request, res: Response, status: number, message: FullMessage): void => {
   res.status(status).send({
     'error': '',
@@ -31,5 +38,6 @@ const error = (req: Request, res: Response, status: number, message: string, det
 export = {
   sucess,
   sucessMessage,
+  sucessMessageList,
   error
 };

@@ -1,3 +1,4 @@
+import store from '../store';
 
 /**
  * @param {user, string} -- to add the message
@@ -22,8 +23,18 @@ const addMessage = (user: string, message: string): Promise<Message> => {
       date: new Date(),
     };
     resolve(fullMessage);
+    store.add(fullMessage);
     console.log(fullMessage);
   });
 };
 
-export = addMessage
+const getMessages = (): Promise<Message[]> => {
+  return new Promise((resolve, reject) => {
+    resolve(store.list());
+  });
+};
+
+export = {
+  addMessage,
+  getMessages,
+};
