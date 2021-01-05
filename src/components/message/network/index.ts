@@ -1,8 +1,8 @@
-import express, { Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import response from '../../../network/response';
 import controller from '../controller';
 
-const router = express.Router();
+const router: Router = Router();
 
 router.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
