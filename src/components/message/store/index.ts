@@ -30,18 +30,26 @@ const addMessage = (message: Message): void => {
 
 // get all messages
 const getMessages = async (): Promise<Message[]> => {
-  const messages: Message[] = await Model.find();
-  return messages;
+  try {
+    const messages: Message[] = await Model.find();
+    return messages;
+  } catch (error) {
+    throw new Error(error);
+  };
 };
 
 // update a message
 const updateMessage = async (id: string, message: string): Promise<string> => {
-  const updatedMessage = await Model.findOneAndUpdate(
-    { _id: id },
-    { message: message },
-    { new: true }
-  );
-  return updatedMessage;
+  try {
+    const updatedMessage = await Model.findOneAndUpdate(
+      { _id: id },
+      { message: message },
+      { new: true }
+    );
+    return updatedMessage;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export = {
