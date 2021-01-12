@@ -2,6 +2,9 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import router from './network/routes';
+import mongoose from 'mongoose';
+
+mongoose.set('useFindAndModify', false);
 
 const app = express();
 const port = process.env.port || 3000;

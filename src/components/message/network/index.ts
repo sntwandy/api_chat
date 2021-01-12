@@ -4,6 +4,7 @@ import controller from '../controller';
 
 const router: Router = Router();
 
+// get all messages
 router.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
     const messagesList = await controller.getMessages();
@@ -13,6 +14,7 @@ router.get('/', async (req: Request, res: Response): Promise<void> => {
   };
 });
 
+// create a message
 router.post('/', async (req: Request, res: Response): Promise<void> => {
   const { user, message } = req.body;
   try {
@@ -21,6 +23,16 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
   } catch(error) {
     response.error(req, res, 400, 'Invalid data', 'Controller Error');
   };
+});
+
+// update a message
+router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    const data = await controller.updateMessage(req.params.id, req.body.message);
+    response.sucess(req, res, 200, data);
+  } catch(error) {
+    response.error(req, res, 500, 'Internal Error', error);
+  }
 });
 
 module.exports = router;

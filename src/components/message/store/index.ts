@@ -15,13 +15,14 @@ const uri =`mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrite
 db.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error(`There was an error: ${error.name}`, error));
+
 interface Message {
   user: string,
   message: string,
   date: Date,
 };
 
-// Add a message
+// add a message
 const addMessage = (message: Message): void => {
   const myMessage = new Model(message);
   myMessage.save();
@@ -33,9 +34,20 @@ const getMessages = async (): Promise<Message[]> => {
   return messages;
 };
 
+// update a message
+const updateMessage = async (id: string, message: string): Promise<string> => {
+  const updatedMessage = await Model.findOneAndUpdate(
+    { _id: id },
+    { message: message },
+    { new: true }
+  );
+  return updatedMessage;
+};
+
 export = {
   add: addMessage,
   list: getMessages,
+  update: updateMessage,
   // get -- get a specific message
   // update --update a message
   // delete -- delete a message

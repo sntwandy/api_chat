@@ -10,6 +10,7 @@ interface Message {
   date: Date,
 };
 
+// add a message
 const addMessage = (user: string, message: string): Promise<Message> => {
   return new Promise((resolve, reject)=> {
     if (!user || !message) {
@@ -28,13 +29,27 @@ const addMessage = (user: string, message: string): Promise<Message> => {
   });
 };
 
+// get all messages
 const getMessages = (): Promise<Message[]> => {
   return new Promise((resolve, reject) => {
     resolve(store.list());
   });
 };
 
+// update a message
+const updateMessage = async (id: string, message: string): Promise<string> => {
+  if (!id || !message) throw new Error('Invalid data');
+  try {
+    const updatedMessage: string = await store.update(id, message);
+    return updatedMessage;
+  } catch(error) {
+    console.error(error);
+    throw new Error('Server Error, updating message');
+  };
+};
+
 export = {
   addMessage,
   getMessages,
+  updateMessage,
 };
