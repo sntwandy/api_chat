@@ -1,20 +1,11 @@
 /**
  * @param {Message} [messageData] -- full message
  */
-
-import db from 'mongoose';
 import Model from '../model';
-import config from '../../../config';
+import db from '../../../db';
 
-const { dbUser, dbPassword, dbName, dbHost } = config;
-
-// MongoDB URI
-const uri =`mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`;
-
-// MongoDB Connection
-db.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB'))
-  .catch((error) => console.error(`There was an error: ${error.name}`, error));
+// connection to DB
+db();
 
 interface Message {
   user: string,
