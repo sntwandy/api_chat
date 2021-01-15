@@ -30,9 +30,9 @@ const addMessage = (user: string, message: string): Promise<Message> => {
 };
 
 // get all messages
-const getMessages = (): Promise<Message[]> => {
+const getMessages = (filterUser: any): Promise<Message[]> => {
   return new Promise((resolve, reject) => {
-    resolve(store.list());
+    resolve(store.list(filterUser));
   });
 };
 

@@ -29,9 +29,13 @@ const addMessage = (message: Message): void => {
 };
 
 // get all messages
-const getMessages = async (): Promise<Message[]> => {
+const getMessages = async (filterUser: any): Promise<Message[]> => {
   try {
-    const messages: Message[] = await Model.find();
+    let filter = {};
+    if (filterUser !== null) {
+      filter = { user: new RegExp(filterUser, 'i') } // not sensitive to mayus
+    }
+    const messages: Message[] = await Model.find(filter);
     return messages;
   } catch (error) {
     throw new Error(error);

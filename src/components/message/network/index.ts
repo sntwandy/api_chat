@@ -6,8 +6,9 @@ const router: Router = Router();
 
 // get all messages
 router.get('/', async (req: Request, res: Response): Promise<void> => {
+  const filterMessage: any = req.query.user || null;
   try {
-    const messagesList = await controller.getMessages();
+    const messagesList = await controller.getMessages(filterMessage);
     response.sucessMessageList(req, res, 200, messagesList);
   } catch(error) {
     response.error(req, res, 500, 'Unexpected Error', error);
