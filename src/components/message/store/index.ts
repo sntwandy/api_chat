@@ -57,7 +57,7 @@ const updateMessage = async (id: string, message: string): Promise<string> => {
 };
 
 // delete a message
-const deleteUser = async (userId: string): Promise<void> => {
+const deleteMessage = async (userId: string): Promise<void> => {
   try {
     await Model.deleteOne({
       _id: userId,
@@ -72,7 +72,7 @@ export = {
   add: addMessage,
   list: getMessages,
   update: updateMessage,
-  remove: deleteUser,
+  remove: deleteMessage,
   // get -- get a specific message
   // update --update a message
   // delete -- delete a message

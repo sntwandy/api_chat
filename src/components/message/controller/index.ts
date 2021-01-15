@@ -55,8 +55,8 @@ const deleteMessage = async (userId: string): Promise<void> => {
   } catch(error) {
     console.log(error);
     throw new Error('Error to delete');
-  }
-}
+  };
+};
 
 export = {
   addMessage,
