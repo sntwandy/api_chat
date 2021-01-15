@@ -56,10 +56,23 @@ const updateMessage = async (id: string, message: string): Promise<string> => {
   }
 };
 
+// delete a message
+const deleteUser = async (userId: string): Promise<void> => {
+  try {
+    await Model.deleteOne({
+      _id: userId,
+    });
+  } catch(error) {
+    console.error(error);
+    throw new Error('Error internal');
+  };
+};
+
 export = {
   add: addMessage,
   list: getMessages,
   update: updateMessage,
+  remove: deleteUser,
   // get -- get a specific message
   // update --update a message
   // delete -- delete a message

@@ -48,8 +48,19 @@ const updateMessage = async (id: string, message: string): Promise<string> => {
   };
 };
 
+// delete a message
+const deleteMessage = async (userId: string): Promise<void> => {
+  try {
+    await store.remove(userId);
+  } catch(error) {
+    console.log(error);
+    throw new Error('Error to delete');
+  }
+}
+
 export = {
   addMessage,
   getMessages,
   updateMessage,
+  deleteMessage,
 };

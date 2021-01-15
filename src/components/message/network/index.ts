@@ -36,4 +36,15 @@ router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
+// delete a message
+router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
+  try {
+    await controller.deleteMessage(req.params.id);
+    response.sucess(req, res, 200, `Message of the user: ${req.params.id} was deleted`)
+  } catch(error) {
+    console.error(error);
+    response.error(req, res, 500, 'Internal Error', error);
+  }
+});
+
 module.exports = router;
