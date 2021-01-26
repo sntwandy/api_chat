@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document } from 'mongoose';
 
 
 const mySchema: Schema = new Schema({
@@ -10,6 +10,12 @@ const mySchema: Schema = new Schema({
   date: Date,
 }, { collection: 'ChatApp' });
 
-const myModel = model('Message', mySchema);
+interface Message extends Document {
+  user: string;
+  message: string;
+  date: Date;
+};
+
+const myModel = model<Message>('Message', mySchema);
 
 export default myModel;

@@ -1,9 +1,11 @@
 import { Application } from 'express';
-const message = require('../components/message/network');
+import message from '../components/message/network';
+import user from '../components/user/network';
 
 
 const routes = (server: Application) => {
   server.use('/message', message);
+  server.use('/user', user);
 };
 
 export default routes;

@@ -30,7 +30,7 @@ router.post('/', async (req: Request, res: Response): Promise<void> => {
 router.patch('/:id', async (req: Request, res: Response): Promise<void> => {
   try {
     const data = await controller.updateMessage(req.params.id, req.body.message);
-    response.sucess(req, res, 200, data);
+    response.sucessMessage(req, res, 200, data);
   } catch(error) {
     response.error(req, res, 500, 'Internal Error', error);
   }
@@ -47,4 +47,4 @@ router.delete('/:id', async (req: Request, res: Response): Promise<void> => {
   }
 });
 
-module.exports = router;
+export default  router;

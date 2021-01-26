@@ -37,10 +37,10 @@ const getMessages = (filterUser: any): Promise<Message[]> => {
 };
 
 // update a message
-const updateMessage = async (id: string, message: string): Promise<string> => {
+const updateMessage = async (id: string, message: string): Promise<Message> => {
   if (!id || !message) throw new Error('Invalid data');
   try {
-    const updatedMessage: string = await store.update(id, message);
+    const updatedMessage: Message = await store.update(id, message);
     return updatedMessage;
   } catch(error) {
     console.error(error);

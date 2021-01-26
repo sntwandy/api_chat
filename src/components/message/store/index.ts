@@ -15,7 +15,7 @@ interface Message {
 
 // add a message
 const addMessage = (message: Message): void => {
-  const myMessage = new Model(message);
+  const myMessage= new Model(message);
   myMessage.save();
 };
 
@@ -34,9 +34,9 @@ const getMessages = async (filterUser: any): Promise<Message[]> => {
 };
 
 // update a message
-const updateMessage = async (id: string, message: string): Promise<string> => {
+const updateMessage = async (id: string, message: string): Promise<Message> => {
   try {
-    const updatedMessage = await Model.findOneAndUpdate(
+    const updatedMessage: Message = await Model.findOneAndUpdate(
       { _id: id },
       { message: message },
       { new: true }
