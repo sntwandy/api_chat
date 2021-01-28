@@ -19,7 +19,18 @@ const addUser = async (user: User): Promise<User> => {
   };
 };
 
+// Get all users
+const getAllUsers = async (): Promise<User[]> => {
+  try {
+    const allUsers: User[] = await Model.find();
+    return allUsers;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 
 export = {
+  get: getAllUsers,
   add: addUser,
 };

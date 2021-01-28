@@ -35,6 +35,13 @@ const sucessUser = (req: Request, res: Response, status: number, user: User): vo
   });
 };
 
+const sucessUsers = (req: Request, res: Response, status: number, user: User[]): void => {
+  res.status(status).send({
+    'error': '',
+    'body': user,
+  });
+};
+
 const error = (req: Request, res: Response, status: number, message: string, details: string): void => {
   console.error('[response error] => ' + details);
   res.status(status).send({
@@ -46,6 +53,7 @@ const error = (req: Request, res: Response, status: number, message: string, det
 export = {
   sucess,
   sucessUser,
+  sucessUsers,
   sucessMessage,
   sucessMessageList,
   error

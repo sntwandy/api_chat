@@ -15,6 +15,17 @@ const addUser = async (user: User): Promise<User> => {
   };
 };
 
+// Get all users logic
+const getAllUsers = async (): Promise<User[]> => {
+  try {
+    const allUsers: User[] = await store.get();
+    return allUsers;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export = {
+  getAllUsers,
   addUser,
 };
