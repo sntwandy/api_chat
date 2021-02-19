@@ -24,9 +24,10 @@ const getMessages = async (filterUser: any): Promise<Message[]> => {
   try {
     let filter = {};
     if (filterUser !== null) {
-      filter = { user: new RegExp(filterUser, 'i') } // not sensitive to mayus
+      filter = { user: filterUser } // not sensitive to mayus
     }
-    const messages: Message[] = await Model.find(filter);
+    const messages: Message[] = await Model.find(filter).populate('user');
+
     return messages;
   } catch (error) {
     throw new Error(error);

@@ -1,8 +1,15 @@
+/**
+ *
+ */
 import { Schema, model, Document } from 'mongoose';
 
-
 const mySchema: Schema = new Schema({
-  user: String,
+  user: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'ChatUsers'
+    }
+  ],
   message: {
     type: String,
     required: true,
@@ -18,4 +25,4 @@ interface Message extends Document {
 
 const myModel = model<Message>('Message', mySchema);
 
-export default myModel;
+export default  myModel

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { User } from '../utils/interfaces';
+import { Chat, User } from '../utils/interfaces';
 
 interface FullMessage {
   user: string,
@@ -25,6 +25,13 @@ const sucessMessage = (req: Request, res: Response, status: number, message: Ful
   res.status(status).send({
     'error': '',
     'body': message,
+  });
+};
+
+const sucessChat = (req: Request, res: Response, status: number, chat: Chat): void => {
+  res.status(status).send({
+    'error': '',
+    'body': chat,
   });
 };
 
@@ -54,6 +61,7 @@ export = {
   sucess,
   sucessUser,
   sucessUsers,
+  sucessChat,
   sucessMessage,
   sucessMessageList,
   error

@@ -15,6 +15,6 @@ interface User extends Document {
   registerDate: Date;
 };
 
-const myModel = model<User>('User', mySchema);
+const myModel = model<User>('ChatUsers', mySchema);
 
 export default myModel;
