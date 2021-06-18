@@ -8,14 +8,14 @@ import db from '../../../db';
 db();
 
 interface Message {
-  user: string,
-  message: string,
-  date: Date,
-};
+  user: string;
+  message: string;
+  date: Date;
+}
 
 // add a message
 const addMessage = (message: Message): void => {
-  const myMessage= new Model(message);
+  const myMessage = new Model(message);
   myMessage.save();
 };
 
@@ -24,14 +24,15 @@ const getMessages = async (filterUser: any): Promise<Message[]> => {
   try {
     let filter = {};
     if (filterUser !== null) {
-      filter = { user: filterUser } // not sensitive to mayus
+      filter = { user: filterUser }; // not sensitive to mayus
     }
+    // Populate the data, with the name of the field you want to populate
     const messages: Message[] = await Model.find(filter).populate('user');
 
     return messages;
   } catch (error) {
     throw new Error(error);
-  };
+  }
 };
 
 // update a message
@@ -54,10 +55,10 @@ const deleteMessage = async (userId: string): Promise<void> => {
     await Model.deleteOne({
       _id: userId,
     });
-  } catch(error) {
+  } catch (error) {
     console.error(error);
     throw new Error('Error internal');
-  };
+  }
 };
 
 export = {
